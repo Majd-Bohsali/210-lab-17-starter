@@ -110,7 +110,6 @@ Node* addBack(Node* hd, int val) {
 }
 
 Node* deleteNode(Node* hd, int input) { 
-
     if (input == 1) { 
         Node* current = hd; 
         hd = current->next;
@@ -139,6 +138,9 @@ Node* deleteNode(Node* hd, int input) {
 Node* insertNode(Node* hd, int input) {
     Node* current = hd;
     Node* prev = hd;
+    Node* newnode = new Node;
+    newnode->value = 10000;
+
     for (int i = 0; i < (input); i++)
         if (i == 0)
             current = current->next;
@@ -146,8 +148,6 @@ Node* insertNode(Node* hd, int input) {
             current = current->next;
             prev = prev->next;
         }
-    Node* newnode = new Node;
-    newnode->value = 10000;
     newnode->next = current;
     prev->next = newnode;
 

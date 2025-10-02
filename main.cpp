@@ -90,6 +90,9 @@ void output(Node* hd) {
     cout << endl;
 }
 
+// addFront(Node* hd, int val) adds a value to the start of a linked list
+// hd is the head ptr for the linked list, val is the value to be added to the start of the linked list.
+// returns: pointer to the new head of the linked list
 Node* addFront(Node* hd, int val) { 
     Node* newNode = new Node; 
     newNode->value = val; 
@@ -97,11 +100,20 @@ Node* addFront(Node* hd, int val) {
     return newNode;
 }
 
+// addBack(Node* hd, int val) adds a value to the back of a linked list
+// hd is the head ptr for the linked list, val is the value to be added to the back of the linked list.
+// returns: pointer to the head of the linked list
 Node* addBack(Node* hd, int val) { 
     Node* newNode = new Node; 
     newNode->value = val; 
     newNode->next = nullptr; 
     Node* current = hd; 
+
+    if (!hd) { 
+        hd = newNode; 
+        return hd;
+    }
+
     while(current->next) { 
         current = current->next; 
     }
@@ -109,7 +121,14 @@ Node* addBack(Node* hd, int val) {
     return hd; 
 }
 
+// deleteNode(Node* hd, int input) deletes the node at specific position
+// hd is the head ptr for the linked list, input is the element value selected to be removed from the linked list
+// returns: pointer to the head of the linekd list
 Node* deleteNode(Node* hd, int input) { 
+    if(!hd) { 
+        return nullptr; 
+    }
+
     if (input == 1) { 
         Node* current = hd; 
         hd = current->next;
@@ -135,11 +154,19 @@ Node* deleteNode(Node* hd, int input) {
     return hd; 
 }
 
+// insertNode(Node* hd, int pos) inserts a node with value 10000 into a selected spot of the linked list
+// hd is the head ptr for the linked list, input is the position where the new node should be inserted 
+// returns: pointer to the head of the linked list
 Node* insertNode(Node* hd, int input) {
     Node* current = hd;
     Node* prev = hd;
-    Node* newnode = new Node;
-    newnode->value = 10000;
+    Node* newNode = new Node;
+    newNode->value = 10000;
+
+    if(!hd) { 
+        newNode->next = hd; 
+        return newNode;
+    }
 
     for (int i = 0; i < (input); i++)
         if (i == 0)
@@ -148,12 +175,15 @@ Node* insertNode(Node* hd, int input) {
             current = current->next;
             prev = prev->next;
         }
-    newnode->next = current;
-    prev->next = newnode;
+    newNode->next = current;
+    prev->next = newNode;
 
     return hd; 
 }
 
+// clearList(Node* hd) deletes all nodes in the linked list.
+// hd: pointer to the head of the linked list
+// returns: nullptr 
 Node* clearList(Node* hd) { 
     Node* current = hd; 
     while (current) { 

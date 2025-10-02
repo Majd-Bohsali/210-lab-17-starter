@@ -15,6 +15,7 @@ void output(Node*);
 Node* addFront(Node*, int);
 Node* addBack(Node*, int); 
 Node* deleteNode(Node*, int);
+Node* insertNode(Node*, int); 
 Node* clearList(Node*);
 
 int main() {
@@ -58,6 +59,16 @@ int main() {
 
     cout << "Output with deleted node:" << endl;
     output(head); 
+
+    Node * current = head;
+    current = head;
+    cout << "After which node to insert 10000? " << endl;
+    cout << "Choice --> ";
+    cin >> entry;
+
+    head = insertNode(head, entry);
+    cout << "Output with inserted node:" << endl;
+    output(head);
 
 /*
     // deleting a node
@@ -153,11 +164,11 @@ Node* addBack(Node* hd, int val) {
     return hd; 
 }
 
-Node* deleteNode(Node* hd, int idx) { 
+Node* deleteNode(Node* hd, int input) { 
     Node * current = hd;
     current = hd;
     Node *prev = hd;
-    for (int i = 0; i < (idx-1); i++)
+    for (int i = 0; i < (input-1); i++)
         if (i == 0)
             current = current->next;
         else {
@@ -169,6 +180,24 @@ Node* deleteNode(Node* hd, int idx) {
         delete current;
         current = nullptr;
     }
+    return hd; 
+}
+
+Node* insertNode(Node* hd, int input) {
+    Node* current = hd;
+    Node* prev = hd;
+    for (int i = 0; i < (input); i++)
+        if (i == 0)
+            current = current->next;
+        else {
+            current = current->next;
+            prev = prev->next;
+        }
+    Node * newnode = new Node;
+    newnode->value = 10000;
+    newnode->next = current;
+    prev->next = newnode;
+
     return hd; 
 }
 

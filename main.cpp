@@ -70,61 +70,6 @@ int main() {
     cout << "Output with inserted node:" << endl;
     output(head);
 
-/*
-    // deleting a node
-    Node * current = head;
-    cout << "Which node to delete? " << endl;
-    output(head);
-    int entry;
-    cout << "Choice --> ";
-    cin >> entry;
-
-    // traverse that many times and delete that node
-    current = head;
-    Node *prev = head;
-    for (int i = 0; i < (entry-1); i++)
-        if (i == 0)
-            current = current->next;
-        else {
-            current = current->next;
-            prev = prev->next;
-        }
-    // at this point, delete current and reroute pointers
-    if (current) {  // checks for current to be valid before deleting the node
-        prev->next = current->next;
-        delete current;
-        current = nullptr;
-    }
-    output(head);
-
-    // insert a node
-    current = head;
-    cout << "After which node to insert 10000? " << endl;
-    count = 1;
-    while (current) {
-        cout << "[" << count++ << "] " << current->value << endl;
-        current = current->next;
-    }
-    cout << "Choice --> ";
-    cin >> entry;
-
-    current = head;
-    prev = head;
-    for (int i = 0; i < (entry); i++)
-        if (i == 0)
-            current = current->next;
-        else {
-            current = current->next;
-            prev = prev->next;
-        }
-    //at this point, insert a node between prev and current
-    Node * newnode = new Node;
-    newnode->value = 10000;
-    newnode->next = current;
-    prev->next = newnode;
-    output(head);
-*/
-    // deleting the linked list
     head = clearList(head);
     output(head);
 
@@ -165,9 +110,17 @@ Node* addBack(Node* hd, int val) {
 }
 
 Node* deleteNode(Node* hd, int input) { 
-    Node * current = hd;
+
+    if (input == 1) { 
+        Node* current = hd; 
+        hd = current->next;
+        delete current; 
+        return hd; 
+    }
+
+    Node* current = hd;
     current = hd;
-    Node *prev = hd;
+    Node* prev = hd;
     for (int i = 0; i < (input-1); i++)
         if (i == 0)
             current = current->next;
@@ -193,7 +146,7 @@ Node* insertNode(Node* hd, int input) {
             current = current->next;
             prev = prev->next;
         }
-    Node * newnode = new Node;
+    Node* newnode = new Node;
     newnode->value = 10000;
     newnode->next = current;
     prev->next = newnode;

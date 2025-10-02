@@ -10,6 +10,7 @@ struct Node {
 
 void output(Node*);
 Node* clearList(Node*);
+Node* addFront(Node*, int);
 
 int main() {
     Node *head = nullptr;
@@ -34,6 +35,11 @@ int main() {
     }
     output(head);
 
+    head = addFront(head, rand() % 100);
+    cout << "Added value to front" << endl; 
+    output(head); 
+
+/*
     // deleting a node
     Node * current = head;
     cout << "Which node to delete? " << endl;
@@ -86,7 +92,7 @@ int main() {
     newnode->next = current;
     prev->next = newnode;
     output(head);
-
+*/
     // deleting the linked list
     head = clearList(head);
     output(head);
@@ -106,6 +112,13 @@ void output(Node* hd) {
         current = current->next;
     }
     cout << endl;
+}
+
+Node* addFront(Node* hd, int val) { 
+    Node* newNode = new Node; 
+    newNode->value = val; 
+    newNode->next = hd; 
+    return newNode;
 }
 
 Node* clearList(Node* hd) { 

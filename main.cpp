@@ -1,3 +1,5 @@
+// COMSC210 | Lab 17 | Majd Bohsali
+// IDE used: Visual Studio Code
 #include <iostream>
 using namespace std;
 
@@ -11,6 +13,7 @@ struct Node {
 void output(Node*);
 Node* clearList(Node*);
 Node* addFront(Node*, int);
+Node* addBack(Node*, int); 
 
 int main() {
     Node *head = nullptr;
@@ -35,8 +38,12 @@ int main() {
     }
     output(head);
 
-    head = addFront(head, rand() % 100);
-    cout << "Added value to front" << endl; 
+    head = addFront(head, 150);
+    cout << "Added 150 to front" << endl; 
+    output(head); 
+
+    head = addBack(head, 200);
+    cout << "Added 200 to front" << endl; 
     output(head); 
 
 /*
@@ -119,6 +126,18 @@ Node* addFront(Node* hd, int val) {
     newNode->value = val; 
     newNode->next = hd; 
     return newNode;
+}
+
+Node* addBack(Node* hd, int val) { 
+    Node* newNode = new Node; 
+    newNode->value = val; 
+    newNode->next = nullptr; 
+    Node* current = hd; 
+    while(current->next) { 
+        current = current->next; 
+    }
+    current->next = newNode; 
+    return hd; 
 }
 
 Node* clearList(Node* hd) { 

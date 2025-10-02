@@ -11,9 +11,11 @@ struct Node {
 };
 
 void output(Node*);
-Node* clearList(Node*);
+
 Node* addFront(Node*, int);
 Node* addBack(Node*, int); 
+Node* deleteNode(Node*, int);
+Node* clearList(Node*);
 
 int main() {
     Node *head = nullptr;
@@ -44,6 +46,17 @@ int main() {
 
     head = addBack(head, 200);
     cout << "Added 200 to front" << endl; 
+    output(head); 
+    
+
+    cout << "Which node to delete? " << endl;
+    output(head);
+    int entry;
+    cout << "Choice --> ";
+    cin >> entry;
+    head = deleteNode(head, entry);
+
+    cout << "Output with deleted node:" << endl;
     output(head); 
 
 /*
@@ -137,6 +150,25 @@ Node* addBack(Node* hd, int val) {
         current = current->next; 
     }
     current->next = newNode; 
+    return hd; 
+}
+
+Node* deleteNode(Node* hd, int idx) { 
+    Node * current = hd;
+    current = hd;
+    Node *prev = hd;
+    for (int i = 0; i < (idx-1); i++)
+        if (i == 0)
+            current = current->next;
+        else {
+            current = current->next;
+            prev = prev->next;
+        }
+    if (current) {
+        prev->next = current->next;
+        delete current;
+        current = nullptr;
+    }
     return hd; 
 }
 

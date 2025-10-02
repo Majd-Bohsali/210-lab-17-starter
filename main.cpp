@@ -8,7 +8,8 @@ struct Node {
     Node *next;
 };
 
-void output(Node *);
+void output(Node*);
+Node* clearList(Node*);
 
 int main() {
     Node *head = nullptr;
@@ -87,28 +88,32 @@ int main() {
     output(head);
 
     // deleting the linked list
-    current = head;
-    while (current) {
-        head = current->next;
-        delete current;
-        current = head;
-    }
-    head = nullptr;
+    head = clearList(head);
     output(head);
 
     return 0;
 }
 
-void output(Node * hd) {
+void output(Node* hd) {
     if (!hd) {
         cout << "Empty list.\n";
         return;
     }
     int count = 1;
-    Node * current = hd;
+    Node* current = hd;
     while (current) {
         cout << "[" << count++ << "] " << current->value << endl;
         current = current->next;
     }
     cout << endl;
+}
+
+Node* clearList(Node* hd) { 
+    Node* current = hd; 
+    while (current) { 
+        hd = current->next; 
+        delete current; 
+        current = hd; 
+    }
+    return nullptr;
 }
